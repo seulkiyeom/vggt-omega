@@ -20,3 +20,10 @@ training/curation/**/*.joblib
 training/curation/**/*.jsonl
 training/curation/**/*.pkl
 training/curation/**/labels*.txt
+
+# policy work
+runs
+egl_min
+stats/
+__pycache__/
+*.pyc
