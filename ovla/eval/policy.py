@@ -53,7 +53,7 @@ class OmegaLiberoPolicy:
         self.norm = Normalizer(Stats.from_dict(meta["stats"]))
         self.view_order = tuple(meta["view_order"])
         self.device = device
-        table = LangTable()
+        table = LangTable(npy=meta.get("lang_npy"))
         self._lang_by_norm = {normalize_instruction(k): v for k, v in table.idx.items()}
         self._emb = table.emb
         self._task_emb = None

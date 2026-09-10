@@ -8,7 +8,7 @@ import argparse
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, "/NHNHOME/nota/skyeom/projects/vggt_omega_ref")
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 from ovla.eval.libero_rollout import eval_task  # noqa: E402

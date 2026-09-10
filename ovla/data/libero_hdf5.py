@@ -85,9 +85,17 @@ def load_or_compute_stats(h5_path: str, suite: str, cache_dir: str) -> Stats:
 
 
 class LangTable:
-    def __init__(self, lang_dir: str = LANG_DIR) -> None:
-        names = json.load(open(os.path.join(lang_dir, "libero_instructions.instructions.json")))
-        self.emb = np.load(os.path.join(lang_dir, "libero_instructions.npy")).astype(np.float32)
+    """Instruction -> embedding. `npy` overrides the default cache (used by the language-fix arms)."""
+
+    def __init__(self, lang_dir: str = LANG_DIR, npy: str | None = None) -> None:
+        names_path = os.path.join(os.path.dirname(npy) if npy else lang_dir, "libero_instructions.instructions.json")
+        if not os.path.exists(names_path):
+            names_path = os.path.join(lang_dir, "libero_instructions.instructions.json")
+        names = json.load(open(names_path))
+        self.path = npy or os.path.join(lang_dir, "libero_instructions.npy")
+        self.emb = np.load(self.path).astype(np.float32)
+        if self.emb.shape[0] != len(names):
+            raise ValueError(f"{self.path}: {self.emb.shape[0]} rows for {len(names)} instructions")
         self.idx = {n: i for i, n in enumerate(names)}
 
     def __call__(self, instruction: str) -> np.ndarray:

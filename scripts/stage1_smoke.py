@@ -22,8 +22,8 @@ import h5py
 import numpy as np
 import torch
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, "/NHNHOME/nota/skyeom/projects/vggt_omega_policy")
+sys.path.insert(0, "/NHNHOME/nota/skyeom/projects/vggt_omega_ref")
+sys.path.insert(0, "/NHNHOME/nota/skyeom/projects/vggt_omega_vla/src")
 from vggt_omega.models import VGGTOmega  # noqa: E402
 from ovla.model.policy import OmegaPolicy, PolicyConfig  # noqa: E402
 
